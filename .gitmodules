@@ -1,0 +1,9 @@
+[submodule "linux-5.12"]
+	path = linux-5.12
+	url = git@github.com:PKUZHOU/linux-5.12.git
+[submodule "qemu-ubuntu-from-base"]
+	path = qemu-ubuntu-from-base
+	url = git@github.com:PKUZHOU/qemu-ubuntu-from-base.git
+[submodule "qemu"]
+	path = qemu
+	url = git@github.com:qemu/qemu.git

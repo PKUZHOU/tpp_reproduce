@@ -7,3 +7,6 @@
 [submodule "qemu"]
 	path = qemu
 	url = git@github.com:qemu/qemu.git
+[submodule "ubuntu-base-18.04"]
+	path = ubuntu-base-18.04
+	url = git@github.com:PKUZHOU/ubuntu-base-18.04.git

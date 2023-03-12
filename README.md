@@ -25,6 +25,11 @@ cp /boot/config-$(uname -r) .config
 
 #You may also need to make sure that CONFIG_SYSTEM_TRUSTED_KEYS="" in .config
 
+# make sure that 
+CONFIG_PCI=y
+CONFIG_E1000=y
+
+
 make menuconfig
 Processor type and features ---->   
     [] Randomize the address of the kernel image (KASLR)
@@ -49,9 +54,38 @@ mkdir /tmp
 chmod 1777 /tmp # change the permissions to 1777
 # do apt things
 # Install necessary packages like git
+
+# avoid ttyS0 not found error
+cd /etc/systemd/system/getty.target.wants
+cp -d getty\@tty1.service getty\@ttyS0.service 
+
+
+```
+
+### Build ubuntu-18.04 in a simple way (recommended)
+```bash
+# Create raw image
+qemu-img create -f raw ubuntu18.raw 10G
+# Format 
+mkfs.ext4 ubuntu18.raw
+# Load image as a loop device
+sudo losetup -f -P ubuntu18.raw
+sudo mount -o sync /dev/loopxx /mnt/tmp
+# Mount the image
+# sudo mount  -o sync images/ubuntu18.raw /mnt/tmp
+# Install ubuntu using debootstrap
+
+# sudo chroot.sh /mnt/tmp
 ```
 
 TODO: Prepare workloads
 
 
-### 
+### Run
+
+```bash
+# Why do I need to setup nic manually?
+ip link set ens3 up
+dhclient 
+# Then can use ssh to connect
+```

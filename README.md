@@ -68,16 +68,20 @@ cp -d getty\@tty1.service getty\@ttyS0.service
 qemu-img create -f raw ubuntu18.raw 10G
 # Format 
 mkfs.ext4 ubuntu18.raw
+
 # Load image as a loop device
 sudo losetup -f -P ubuntu18.raw
+
+# Check which loop device 
+sudo losetup -a
+
 sudo mount -o sync /dev/loopxx /mnt/tmp
 # Mount the image
-# sudo mount  -o sync images/ubuntu18.raw /mnt/tmp
 # Install ubuntu using debootstrap
+sudo debootstrap --arch=amd64 bionic /mnt/point  http://archive.ubuntu.com/ubuntu/
 
-# sudo chroot.sh /mnt/tmp
+sudo chroot.sh /mnt/tmp
 ```
-
 TODO: Prepare workloads
 
 
